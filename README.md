@@ -10,6 +10,8 @@ A generic, mapping-driven Modbus telemetry service with pluggable outputs:
 
 ## Quick Start (uv)
 
+Python: 3.13+
+
 1. Install deps:
 
 ```bash
@@ -33,6 +35,8 @@ uv run modbus-telemetry --config config.json
 - Ready-to-use templates are under `config_templates/devices/`.
 - The current inverter mapping is provided in:
 	- `config_templates/devices/sungoldpower_sph10048p.json`
+- Generic starter template:
+	- `config_templates/devices/generic_modbus_tcp.json`
 
 Example:
 
@@ -68,13 +72,23 @@ Example:
 }
 ```
 
+## Config Validation
+
+Validate without running the poll loop:
+
+```bash
+uv run modbus-telemetry --config config.json --validate-config
+```
+
 ## Systemd
 
 A service template is provided at:
 
 - `deploy/systemd/modbus-telemetry.service`
+- `deploy/systemd/modbus-telemetry.service.example`
 
-Copy it to your systemd directory, update paths/user, then enable/start.
+Use the `.example` file if you want placeholders and no machine-specific values.
+Copy to your systemd directory, update user and paths, then enable/start.
 
 ## Lint
 

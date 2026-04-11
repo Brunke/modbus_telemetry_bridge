@@ -1,0 +1,43 @@
+{
+  "modbusTCP": {
+    "host": "192.168.1.100",
+    "port": 502,
+    "timeout": 1,
+    "unit_id": 1,
+    "endianness": "BIG"
+  },
+  "poll_interval": 3.0,
+  "span_gaps": true,
+  "maximum_read_length": 64,
+  "influxdb": {
+    "enabled": false,
+    "url": "http://localhost:8086",
+    "token_env": "INFLUXDB_TOKEN",
+    "org": "Historian",
+    "bucket": "Telemetry"
+  },
+  "mqtt": {
+    "enabled": true,
+    "host": "localhost",
+    "port": 1883,
+    "username_env": "MQTT_USERNAME",
+    "password_env": "MQTT_PASSWORD",
+    "node_id": "modbus_tcp_device",
+    "device_name": "Generic Modbus TCP Device",
+    "manufacturer": "Unknown",
+    "model": "ModbusTCP",
+    "discovery_prefix": "homeassistant",
+    "state_prefix": "modbus_telemetry"
+  },
+  "tags": [
+    {
+      "name": "Register 100 Voltage",
+      "address": 100,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "V",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    }
+  ]
+}

@@ -7,6 +7,9 @@ This folder contains reusable config templates for known devices.
 - `devices/sungoldpower_sph10048p.json`
   - Based on the current project register mapping.
   - Influx token is externalized via `token_env`.
+- `devices/generic_modbus_tcp.json`
+  - Generic ModbusTCP starter profile.
+  - Includes one sample tag users can replace.
 
 ## Usage
 

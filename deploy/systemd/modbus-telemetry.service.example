@@ -5,10 +5,10 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=modbus
-WorkingDirectory=/opt/modbus-telemetry
+User=__SERVICE_USER__
+WorkingDirectory=__PROJECT_DIR__
 EnvironmentFile=/etc/default/modbus-telemetry
-ExecStart=/opt/modbus-telemetry/.venv/bin/uv run modbus-telemetry --config /opt/modbus-telemetry/config.json
+ExecStart=__UV_BIN__ run modbus-telemetry --config __PROJECT_DIR__/config.json
 Restart=on-failure
 RestartSec=5
 
