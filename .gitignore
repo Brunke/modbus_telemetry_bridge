@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+.venv/
+venv/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Runtime artifacts
+nohup.out
+*.log
+
+# Local secrets/config
+modbus_config*.json
+*.local.json
+
+# OS/editor
+.DS_Store
+.vscode/

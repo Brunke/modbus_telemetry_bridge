@@ -1,0 +1,56 @@
+{
+  "modbusRTU": {
+    "method": "rtu",
+    "port": "/dev/ttyUSB0",
+    "baudrate": 9600,
+    "parity": "N",
+    "stopbits": 1,
+    "bytesize": 8,
+    "timeout": 1,
+    "unit_id": 1,
+    "endianness": "BIG"
+  },
+  "poll_interval": 3.0,
+  "span_gaps": true,
+  "maximum_read_length": 32,
+  "influxdb": {
+    "enabled": true,
+    "url": "http://localhost:8086",
+    "token_env": "INFLUXDB_TOKEN",
+    "org": "Historian",
+    "bucket": "Momentum376THS"
+  },
+  "mqtt": {
+    "enabled": true,
+    "host": "localhost",
+    "port": 1883,
+    "username_env": "MQTT_USERNAME",
+    "password_env": "MQTT_PASSWORD",
+    "node_id": "inverter_telemetry",
+    "device_name": "PV Battery Inverter",
+    "manufacturer": "Custom",
+    "model": "Modbus Mapping",
+    "discovery_prefix": "homeassistant",
+    "state_prefix": "modbus_telemetry"
+  },
+  "tags": [
+    {
+      "name": "Battery SOC",
+      "address": 256,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "%",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Battery Voltage",
+      "address": 257,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "V",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    }
+  ]
+}

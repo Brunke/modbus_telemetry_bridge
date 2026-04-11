@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "modbus-telemetry-bridge"
+version = "0.1.0"
+description = "Generic Modbus telemetry bridge with optional InfluxDB and MQTT discovery sinks"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Greg Brunke" }]
+dependencies = [
+  "pymodbus>=3.7.0",
+  "influxdb-client>=1.43.0",
+  "paho-mqtt>=2.1.0",
+]
+
+[project.scripts]
+modbus-telemetry = "modbus_telemetry_bridge.cli:main"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.10",
+]
