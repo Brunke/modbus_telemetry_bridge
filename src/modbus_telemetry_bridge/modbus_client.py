@@ -92,8 +92,7 @@ class ModbusReader:
                     contiguous = group_size <= max_length
                 else:
                     contiguous = (
-                        tag.address == (last_address + last_count)
-                        and group_size <= max_length
+                        tag.address == (last_address + last_count) and group_size <= max_length
                     )
 
                 if contiguous:
