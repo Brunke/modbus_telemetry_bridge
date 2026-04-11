@@ -22,6 +22,20 @@ def _ha_device_class(unit: str) -> str | None:
     }.get(normalized)
 
 
+def _default_state_class(sample: TagSample) -> str | None:
+    if not isinstance(sample.value, (int, float)):
+        return None
+
+    unit = (sample.unit or "").lower()
+    name = sample.name.lower()
+    if unit in {"wh", "kwh"}:
+        if any(token in name for token in {"total", "lifetime", "running", "cumulative"}):
+            return "total_increasing"
+        return "measurement"
+
+    return "measurement"
+
+
 class MqttDiscoverySink:
     def __init__(self, cfg: dict, node_id: str = "modbus_bridge"):
         self._cfg = cfg
@@ -52,6 +66,9 @@ class MqttDiscoverySink:
         if object_id in self._published_discovery:
             return
 
+        overrides = self._cfg.get("entity_overrides", {})
+        entity_override = overrides.get(sample.name) or overrides.get(object_id) or {}
+
         payload = {
             "name": sample.name,
             "unique_id": f"{self._node_id}_{object_id}",
@@ -73,8 +90,12 @@ class MqttDiscoverySink:
             if device_class:
                 payload["device_class"] = device_class
 
-        if isinstance(sample.value, (int, float)):
-            payload["state_class"] = "measurement"
+        state_class = _default_state_class(sample)
+        if state_class:
+            payload["state_class"] = state_class
+
+        for key, value in entity_override.items():
+            payload[key] = value
 
         self._client.publish(self._discovery_topic(object_id), json.dumps(payload), retain=True)
         self._published_discovery.add(object_id)

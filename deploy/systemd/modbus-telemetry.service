@@ -1,0 +1,18 @@
+[Unit]
+Description=Modbus Telemetry Bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=gbrunke
+WorkingDirectory=/home/gbrunke/Documents/Sungoldpower_Modbus
+Environment=INFLUXDB_TOKEN=replace_me
+Environment=MQTT_USERNAME=replace_me
+Environment=MQTT_PASSWORD=replace_me
+ExecStart=/home/gbrunke/Documents/Sungoldpower_Modbus/.venv/bin/uv run modbus-telemetry --config /home/gbrunke/Documents/Sungoldpower_Modbus/config.json
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

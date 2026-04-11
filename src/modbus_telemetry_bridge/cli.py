@@ -9,7 +9,7 @@ from .service import run_service
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run the generic Modbus telemetry bridge")
-    parser.add_argument("--config", default="modbus_config.json", help="Path to JSON config")
+    parser.add_argument("--config", default="config.json", help="Path to JSON config")
     parser.add_argument("--once", action="store_true", help="Run one polling cycle and exit")
     args = parser.parse_args()
 

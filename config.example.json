@@ -31,7 +31,16 @@
     "manufacturer": "Custom",
     "model": "Modbus Mapping",
     "discovery_prefix": "homeassistant",
-    "state_prefix": "modbus_telemetry"
+    "state_prefix": "modbus_telemetry",
+    "entity_overrides": {
+      "Battery SOC": {
+        "device_class": "battery",
+        "state_class": "measurement"
+      },
+      "battery_soc": {
+        "icon": "mdi:battery-high"
+      }
+    }
   },
   "tags": [
     {

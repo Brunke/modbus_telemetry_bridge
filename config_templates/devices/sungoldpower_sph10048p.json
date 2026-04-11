@@ -1,0 +1,477 @@
+{ 
+  "modbusRTU": {
+    "method": "rtu",
+    "port": "/dev/ttyUSB0",
+    "baudrate": 9600,
+    "parity": "N",
+    "stopbits": 1,
+    "bytesize": 8,
+    "timeout": 1,
+    "unit_id": 1,
+    "endianness" : "BIG",
+    "span_gaps" : 0
+  },
+  "influxdb": {
+    "enabled": true,
+    "url": "http://localhost:8086",
+    "token_env": "INFLUXDB_TOKEN",
+    "org": "Historian",
+    "bucket": "Momentum376THS"
+  },
+  "mqtt": {
+    "enabled": true,
+    "host": "localhost",
+    "port": 1883,
+    "username_env": "MQTT_USERNAME",
+    "password_env": "MQTT_PASSWORD",
+    "node_id": "sph10048p",
+    "device_name": "Sun Gold Power SPH10048P",
+    "manufacturer": "Sun Gold Power",
+    "model": "SPH10048P",
+    "discovery_prefix": "homeassistant",
+    "state_prefix": "modbus_telemetry"
+  },
+  "poll_interval": 3.0,
+  "span_gaps" : true,
+  "maximum_read_length": 32,
+    "tags": [
+      {
+        "name": "Battery SOC",
+        "address": 256,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "%",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Battery Voltage",
+        "address": 257,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "V",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Battery Current",
+        "address": 258,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "int",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "PV1 Voltage",
+        "address": 263,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "V",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "PV1 Current",
+        "address": 264,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "PV1 Power",
+        "address": 265,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "W",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Charge State",
+        "address": 267,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "None",
+        "sourced_data_type": "enum",
+        "scaling_factor": 1.0,
+        "enum_values": {
+          "0": "Charger Off",
+          "1": "Quick Charge",
+          "2": "Const Voltage Charge",
+          "4": "Float Charge",
+          "5": "Reserved",
+          "6": "Li Battery Active",
+          "7": "Reserved"
+        }
+      },
+      {
+        "name": "Charge Power",
+        "address": 270,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "W",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "PV2 Voltage",
+        "address": 271,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "V",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "PV2 Current",
+        "address": 272,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "PV2 Power",
+        "address": 273,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "W",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Inverter State",
+        "address": 528,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "None",
+        "sourced_data_type": "enum",
+        "scaling_factor": 1.0,
+        "enum_values": {
+          "0": "Power-up Delay",
+          "1": "Waiting State",
+          "2": "Initialization",
+          "3": "Soft Start",
+          "4": "Mains Powered Operation",
+          "5": "Inverter Powered Operation",
+          "6": "Inverter to Mains!",
+          "7": "Mains to Inverter",
+          "8": "Battery Activate",
+          "9": "Shutdown",
+          "10": "Fault"
+        }
+      },
+      {
+        "name": "Bus Voltage",
+        "address": 530,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "V",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Grid Voltage L1",
+        "address": 531,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "V",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Grid Current L1",
+        "address": 532,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "int",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Grid Frequency",
+        "address": 533,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "Hz",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.01
+      },
+      {
+        "name": "Inverter Voltage L1",
+        "address": 534,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "V",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Inverter Current L1",
+        "address": 535,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "int",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Inverter Frequency",
+        "address": 536,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "Hz",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.01
+      },
+      {
+        "name": "Load Current L1",
+        "address": 537,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "int",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Inverter Real Power L1",
+        "address": 539,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "W",
+        "sourced_data_type": "int",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Inverter Apparent Power L1",
+        "address": 540,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "VA",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Grid Battery Charge Current",
+        "address": 542,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Inverter Load L1",
+        "address": 543,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "%",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Heat Sink A (DC-DC) Temp",
+        "address": 544,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "°C",
+        "sourced_data_type": "int",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Heat Sink B (DC-AC) Temp",
+        "address": 545,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "°C",
+        "sourced_data_type": "int",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Heat Sink C (Transformer) Temp",
+        "address": 547,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "°C",
+        "sourced_data_type": "int",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "PV Charge Current",
+        "address": 548,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Positive Bus Voltage",
+        "address": 552,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "V",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Negative Bus Voltage",
+        "address": 553,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "V",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Grid Voltage L2",
+        "address": 554,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "V",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Inverter Voltage L2",
+        "address": 556,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "V",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Inverter Current L2",
+        "address": 558,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "int",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Load Current L2",
+        "address": 560,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "int",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Inverter Real Power L2",
+        "address": 562,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "W",
+        "sourced_data_type": "int",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Inverter Reactive Power L2",
+        "address": 564,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "VA",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Inverter Load L2",
+        "address": 566,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "%",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Battery Max Charge Current",
+        "address": 57866,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Grid Battery Charge Max Current",
+        "address": 57861,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "A",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Inverter Output Priority",
+        "address": 57860,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "None",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Inverter Charger Priority",
+        "address": 57871,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "None",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1.0
+      },
+      {
+        "name": "Battery Charge AH Today",
+        "address": 61485,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "AH",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1
+      },
+      {
+        "name": "Battery Discharge AH Today",
+        "address": 61486,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "AH",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1
+      },
+      {
+        "name": "PV Gneration Today",
+        "address": 61487,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "kWh",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Load Energy Today",
+        "address": 61488,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "kWh",
+        "sourced_data_type": "uint",
+        "scaling_factor": 0.1
+      },
+      {
+        "name": "Total Days Running",
+        "address": 61489,
+        "count": 1,
+        "type": "input",
+        "engineering_unit": "days",
+        "sourced_data_type": "uint",
+        "scaling_factor": 1
+      }
+    ]
+  }
+
+    
