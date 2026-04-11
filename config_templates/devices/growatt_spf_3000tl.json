@@ -1,0 +1,494 @@
+{
+  "modbusRTU": {
+    "method": "rtu",
+    "port": "/dev/ttyUSB0",
+    "baudrate": 9600,
+    "parity": "N",
+    "stopbits": 1,
+    "bytesize": 8,
+    "timeout": 1,
+    "unit_id": 1,
+    "endianness": "BIG",
+    "span_gaps": 1
+  },
+  "influxdb": {
+    "url": "http://localhost:8086",
+    "org": "Historian",
+    "bucket": "Historian",
+    "token_env": "INFLUXDB_TOKEN",
+    "enabled": true
+  },
+  "poll_interval": 1.0,
+  "span_gaps": true,
+  "maximum_read_length": 124,
+  "tags": [
+    {
+      "name": "Inverter Status",
+      "address": 0,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "None",
+      "sourced_data_type": "enum",
+      "scaling_factor": 1.0,
+      "enum_values": {
+        "0": "Standby",
+        "1": "PV and Grid Combine Discharge",
+        "2": "Discharge",
+        "3": "Fault",
+        "4": "Flash",
+        "5": "PV charge",
+        "6": "AC charge",
+        "7": "Combine charge",
+        "8": "Combine charge and Bypass",
+        "9": "PV charge and Bypass",
+        "10": "AC charge and Bypass",
+        "11": "Bypass"
+      }
+    },
+    {
+      "name": "PV Voltage",
+      "address": 1,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "V",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "PV Power",
+      "address": 3,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "W",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "PV Current",
+      "address": 7,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "A",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Output Active Power",
+      "address": 9,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "W",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Output Apparent Power",
+      "address": 11,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "VA",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "AC Charge Power",
+      "address": 13,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "W",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "AC Charge Apparent Power",
+      "address": 15,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "VA",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Battery SOC",
+      "address": 18,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "%",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Bus Voltage",
+      "address": 19,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "V",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Grid Voltage",
+      "address": 20,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "V",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Grid Frequency",
+      "address": 21,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "Hz",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.01
+    },
+    {
+      "name": "Output Voltage",
+      "address": 22,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "V",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Output Frequency",
+      "address": 23,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "Hz",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.01
+    },
+    {
+      "name": "Serial Number",
+      "address": 23,
+      "count": 10,
+      "type": "input",
+      "engineering_unit": "None",
+      "sourced_data_type": "string",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Output DC Voltage",
+      "address": 24,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "V",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Inverter Temp",
+      "address": 25,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "\u00b0C",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "DCDC Temp",
+      "address": 26,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "\u00b0C",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Output Load",
+      "address": 27,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "%",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Total Run Time",
+      "address": 30,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "Hr",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "MPPT Temp",
+      "address": 32,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "\u00b0C",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Output Current",
+      "address": 34,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "A",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Inverter Current",
+      "address": 35,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "A",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Grid Active Power",
+      "address": 36,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "W",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Grid Apparent Power",
+      "address": 38,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "VA",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Fault Word",
+      "address": 40,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "None",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Warning Word",
+      "address": 41,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "None",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Fault Value",
+      "address": 42,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "None",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Warning Value",
+      "address": 43,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "None",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "DTC",
+      "address": 44,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "None",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Check Step",
+      "address": 45,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "None",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Production Line Mode",
+      "address": 46,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "None",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Constant Power Flag",
+      "address": 47,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "None",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "PV Energy Today",
+      "address": 48,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "kWhr",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "PV Energy Total",
+      "address": 50,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "kWhr",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "AC Charge Energy Today",
+      "address": 56,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "kWhr",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "AC Charge Energy Total",
+      "address": 58,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "kWhr",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Battery Discharge Energy Today",
+      "address": 60,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "kWhr",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Battery Discharge Energy Total",
+      "address": 62,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "kWhr",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "AC Discharge Energy Today",
+      "address": 64,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "kWhr",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "AC Discharge Energy Total",
+      "address": 66,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "kWhr",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "AC Charge Current",
+      "address": 68,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "A",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "AC Discharge Power",
+      "address": 73,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "W",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "AC Discharge Apparent Power",
+      "address": 75,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "VA",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Battery Power",
+      "address": 77,
+      "count": 2,
+      "type": "input",
+      "engineering_unit": "W",
+      "sourced_data_type": "int",
+      "scaling_factor": 0.1
+    },
+    {
+      "name": "Battery Voltage",
+      "address": 17,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "V",
+      "sourced_data_type": "uint",
+      "scaling_factor": 0.01
+    },
+    {
+      "name": "MPPT Fan Speed",
+      "address": 81,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "%",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Inverter Fan Speed",
+      "address": 82,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "%",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    },
+    {
+      "name": "Modbus Version",
+      "address": 73,
+      "count": 1,
+      "type": "input",
+      "engineering_unit": "VA",
+      "sourced_data_type": "uint",
+      "scaling_factor": 1.0
+    }
+  ],
+  "mqtt": {
+    "enabled": true,
+    "host": "localhost",
+    "port": 1883,
+    "username_env": "MQTT_USERNAME",
+    "password_env": "MQTT_PASSWORD",
+    "node_id": "growatt_spf_3000tl",
+    "device_name": "Growatt SPF 3000TL",
+    "manufacturer": "Growatt",
+    "model": "SPF 3000TL",
+    "discovery_prefix": "homeassistant",
+    "state_prefix": "modbus_telemetry"
+  }
+}

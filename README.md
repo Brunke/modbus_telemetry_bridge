@@ -35,6 +35,8 @@ uv run modbus-telemetry --config config.json
 - Ready-to-use templates are under `config_templates/devices/`.
 - The current inverter mapping is provided in:
 	- `config_templates/devices/sungoldpower_sph10048p.json`
+- Growatt template:
+	- `config_templates/devices/growatt_spf_3000tl.json`
 - Generic starter template:
 	- `config_templates/devices/generic_modbus_tcp.json`
 
