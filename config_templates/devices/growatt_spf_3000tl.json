@@ -13,8 +13,8 @@
   },
   "influxdb": {
     "url": "http://localhost:8086",
-    "org": "Historian",
-    "bucket": "Historian",
+    "org": "example_org",
+    "bucket": "telemetry",
     "token_env": "INFLUXDB_TOKEN",
     "enabled": true
   },

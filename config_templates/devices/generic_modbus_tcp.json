@@ -13,8 +13,8 @@
     "enabled": false,
     "url": "http://localhost:8086",
     "token_env": "INFLUXDB_TOKEN",
-    "org": "Historian",
-    "bucket": "Telemetry"
+    "org": "example_org",
+    "bucket": "telemetry"
   },
   "mqtt": {
     "enabled": true,
