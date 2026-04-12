@@ -3,10 +3,11 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 
+from pymodbus import FramerType
 from pymodbus.client import ModbusSerialClient, ModbusTcpClient
 
 from .decoder import decode_registers
-from .mapping import TagMapping, TagSample
+from .mapping import RegisterType, TagMapping, TagSample
 
 _LOG = logging.getLogger(__name__)
 
@@ -21,9 +22,15 @@ class ModbusReader:
     def _build_client(self, cfg: dict):
         if "modbusRTU" in cfg:
             c = cfg["modbusRTU"]
+            method = str(c.get("method", "rtu")).lower()
+            if method == "ascii":
+                framer = FramerType.ASCII
+            else:
+                framer = FramerType.RTU
+
             return ModbusSerialClient(
-                method=c.get("method", "rtu"),
                 port=c["port"],
+                framer=framer,
                 baudrate=c.get("baudrate", 9600),
                 parity=c.get("parity", "N"),
                 stopbits=c.get("stopbits", 1),
@@ -123,18 +130,32 @@ class ModbusReader:
             total_registers = max_address - min_address + 1
 
             register_type = group[0].register_type
-            if register_type in {"input", "input_register", "input_registers"}:
-                result = self._client.read_input_registers(
-                    min_address,
-                    total_registers,
-                    slave=self._unit_id,
-                )
+            if register_type == RegisterType.INPUT:
+                try:
+                    result = self._client.read_input_registers(
+                        min_address,
+                        count=total_registers,
+                        device_id=self._unit_id,
+                    )
+                except TypeError:
+                    result = self._client.read_input_registers(
+                        min_address,
+                        total_registers,
+                        slave=self._unit_id,
+                    )
             else:
-                result = self._client.read_holding_registers(
-                    min_address,
-                    total_registers,
-                    slave=self._unit_id,
-                )
+                try:
+                    result = self._client.read_holding_registers(
+                        min_address,
+                        count=total_registers,
+                        device_id=self._unit_id,
+                    )
+                except TypeError:
+                    result = self._client.read_holding_registers(
+                        min_address,
+                        total_registers,
+                        slave=self._unit_id,
+                    )
 
             if result.isError():
                 _LOG.error(

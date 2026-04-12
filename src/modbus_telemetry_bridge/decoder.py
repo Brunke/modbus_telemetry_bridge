@@ -50,7 +50,15 @@ def decode_registers(
     if mapping.data_type in {"enum", "string"}:
         return raw
 
-    return float(raw) * mapping.scaling_factor
+    scaled = float(raw) * mapping.scaling_factor
+
+    if (
+        mapping.data_type in {"int", "uint", "int64", "uint64"}
+        and float(mapping.scaling_factor).is_integer()
+    ):
+        return int(round(scaled))
+
+    return scaled
 
 
 def topic_safe(value: str) -> str:

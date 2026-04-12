@@ -22,6 +22,7 @@ nohup.out
 config.json
 modbus_config*.json
 *.local.json
+config.local*.json
 
 # OS/editor
 .DS_Store

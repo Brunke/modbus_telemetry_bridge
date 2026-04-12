@@ -1,7 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from enum import StrEnum
 from typing import Any
+
+
+class RegisterType(StrEnum):
+    HOLDING = "holding"
+    INPUT = "input"
 
 
 @dataclass(frozen=True)
@@ -9,7 +15,7 @@ class TagMapping:
     name: str
     address: int
     count: int
-    register_type: str
+    register_type: RegisterType
     data_type: str
     scaling_factor: float = 1.0
     engineering_unit: str = ""
@@ -17,7 +23,16 @@ class TagMapping:
 
     @classmethod
     def from_dict(cls, raw: dict[str, Any]) -> TagMapping:
-        register_type = str(raw.get("type", "holding")).strip().lower()
+        register_type_raw = str(raw["type"]).strip().lower()
+        try:
+            register_type = RegisterType(register_type_raw)
+        except ValueError as exc:
+            tag_name = str(raw.get("name", "<unknown>"))
+            raise ValueError(
+                f"Invalid register type '{register_type_raw}' for tag '{tag_name}'. "
+                "Allowed values: 'holding', 'input'."
+            ) from exc
+
         data_type = str(raw.get("sourced_data_type", "uint")).strip().lower()
 
         return cls(

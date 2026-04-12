@@ -11,6 +11,7 @@ requires-python = ">=3.13"
 authors = [{ name = "Greg Brunke" }]
 dependencies = [
   "pymodbus>=3.7.0",
+  "pyserial>=3.5",
   "influxdb-client>=1.43.0",
   "paho-mqtt>=2.1.0",
   "pydantic>=2.8.0",

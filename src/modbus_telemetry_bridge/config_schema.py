@@ -55,7 +55,7 @@ class TagConfig(BaseModel):
     name: str
     address: int
     count: int = 1
-    type: str = "holding"
+    type: Literal["holding", "input"]
     engineering_unit: str = ""
     sourced_data_type: str = "uint"
     scaling_factor: float = 1.0

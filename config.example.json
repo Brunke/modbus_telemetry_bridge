@@ -47,7 +47,7 @@
       "name": "Battery SOC",
       "address": 256,
       "count": 1,
-      "type": "input",
+      "type": "holding",
       "engineering_unit": "%",
       "sourced_data_type": "uint",
       "scaling_factor": 1.0
@@ -56,7 +56,7 @@
       "name": "Battery Voltage",
       "address": 257,
       "count": 1,
-      "type": "input",
+      "type": "holding",
       "engineering_unit": "V",
       "sourced_data_type": "uint",
       "scaling_factor": 0.1
