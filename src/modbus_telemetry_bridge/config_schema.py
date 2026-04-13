@@ -407,14 +407,12 @@ class TagConfig(BaseModel):
 
         if self.ha.device_class == "enum" and not self.enum_values and not self.ha.options:
             raise ValueError(
-                    f"Tag '{self.name}' uses sensor device_class 'enum' "
+                f"Tag '{self.name}' uses sensor device_class 'enum' "
                 "but defines neither enum_values nor ha.options."
             )
 
         raw_unit = self.engineering_unit.strip()
-        normalized_unit = (
-            _NO_UNIT if raw_unit == "" or raw_unit.lower() == "none" else raw_unit
-        )
+        normalized_unit = _NO_UNIT if raw_unit == "" or raw_unit.lower() == "none" else raw_unit
         if normalized_unit in allowed_units:
             return self
 
