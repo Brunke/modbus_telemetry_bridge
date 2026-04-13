@@ -32,6 +32,20 @@
     "model": "Modbus Mapping",
     "discovery_prefix": "homeassistant",
     "state_prefix": "modbus_telemetry",
+    "devices": {
+      "battery": {
+        "name": "Inverter Battery",
+        "manufacturer": "Custom",
+        "model": "Battery Telemetry",
+        "via_device": "root"
+      },
+      "pv": {
+        "name": "PV Input",
+        "manufacturer": "Custom",
+        "model": "PV Telemetry",
+        "via_device": "root"
+      }
+    },
     "entity_overrides": {
       "Battery SOC": {
         "device_class": "battery",
@@ -50,7 +64,15 @@
       "type": "holding",
       "engineering_unit": "%",
       "sourced_data_type": "uint",
-      "scaling_factor": 1.0
+      "scaling_factor": 1.0,
+      "ha": {
+        "device_id": "battery",
+        "component": "sensor",
+        "object_id": "soc",
+        "entity_category": "diagnostic",
+        "device_class": "battery",
+        "state_class": "measurement"
+      }
     },
     {
       "name": "Battery Voltage",
@@ -59,7 +81,12 @@
       "type": "holding",
       "engineering_unit": "V",
       "sourced_data_type": "uint",
-      "scaling_factor": 0.1
+      "scaling_factor": 0.1,
+      "ha": {
+        "device_id": "battery",
+        "component": "sensor",
+        "object_id": "voltage"
+      }
     }
   ]
 }
